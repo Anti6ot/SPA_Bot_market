@@ -1,30 +1,86 @@
 import React, { useEffect, useState } from "react";
+import TextField from "../common/form/textField";
+import { validator } from "../../utils/validator";
 // НАСТРОИТЬ ЛОГИН ФОРМ
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+    const [data, setData] = useState({
+        email: "",
+        password: ""
+    });
+    const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => {
-    const { target } = e;
-    setEmail(target.value);
-  };
+    const handleChange = ({ target }) => {
+        setData((prevState) => ({
+            ...prevState,
+            [target.name]: target.value
+        }));
+    };
 
-  useEffect(() => {
-    console.log(email);
-  }, [email]);
-  return (
-    <form action="">
-      <div>
-        <label htmlFor="email"> Email </label>
-        <input id="Email" type="text" value={email} onChange={handleChange} />
-      </div>
+    const validatorConfig = {
+        email: {
+            isRequired: {
+                message: "Электронная почта обязательна для заполнения"
+            },
+            isEmail: {
+                message: "Email введен некорректно"
+            }
+        },
+        password: {
+            isRequired: {
+                message: "Пароль обязателен для заполнения"
+            },
+            isCapitalSymbol: {
+                message: "Пароль должен содержать хотя бы одну заглавную букву"
+            },
+            isContainDigit: {
+                message: "Пароль должен содержать хотя бы одно число"
+            },
+            min: {
+                message: "Пароль должен состоять минимум из 8 символов",
+                value: 8
+            }
+        }
+    };
 
-      <div>
-        <label htmlFor="password"> Пароль </label>
-        <input type="text" value={password} />
-      </div>
-    </form>
-  );
+    useEffect(() => {
+        validate();
+    }, [data]);
+
+    const validate = () => {
+        const errors = validator(data, validatorConfig);
+        setErrors(errors);
+    };
+    useEffect(() => {
+        console.log("errors", errors);
+    }, [errors]);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const isValid = validate();
+        if (!isValid) return;
+        console.log(data);
+        // console.log(e.target);
+    };
+    return (
+        <form onSubmit={handleSubmit}>
+            <TextField
+                label="Электронная почта"
+                name="email"
+                value={data.email}
+                onChange={handleChange}
+                errors={errors.email}
+            />
+
+            <TextField
+                label="Пароль"
+                type="password"
+                name="password"
+                value={data.password}
+                onChange={handleChange}
+                errors={errors.password}
+            />
+            <button>Submit</button>
+        </form>
+    );
 };
 
 export default LoginForm;
