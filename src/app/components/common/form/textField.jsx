@@ -3,20 +3,23 @@ import PropTypes from "prop-types";
 
 const TextField = ({ label, type, name, value, onChange, errors }) => {
     return (
-        <div>
+        <div className="mb-4">
             <label htmlFor={name}> {label} </label>
-            <input
-                id={name}
-                name={name}
-                type={type}
-                value={value}
-                onChange={onChange}
-            />
-            {errors && (
-                <div className="form-control is-invalid" role="alert">
-                    {errors}
-                </div>
-            )}
+
+            <div className="input-group has-validation">
+                <input
+                    id={name}
+                    name={name}
+                    type={type}
+                    value={value}
+                    onChange={onChange}
+                />
+                {errors && (
+                    <div className="form-control is-invalid" role="alert">
+                        {errors}
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

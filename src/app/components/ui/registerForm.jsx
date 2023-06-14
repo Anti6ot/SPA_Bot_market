@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TextField from "../common/form/textField";
 import { validator } from "../../utils/validator";
 // НАСТРОИТЬ ЛОГИН ФОРМ
-const LoginForm = () => {
+const RegisterForm = () => {
     const [data, setData] = useState({
         email: "",
         password: ""
@@ -63,14 +63,6 @@ const LoginForm = () => {
     return (
         <form onSubmit={handleSubmit}>
             <TextField
-                label="Электронная почта"
-                name="email"
-                value={data.email}
-                onChange={handleChange}
-                errors={errors.email}
-            />
-
-            <TextField
                 label="Пароль"
                 type="password"
                 name="password"
@@ -83,4 +75,4 @@ const LoginForm = () => {
     );
 };
 
-export default LoginForm;
+export default RegisterForm;
