@@ -58,27 +58,29 @@ const LoginForm = () => {
         const isValid = validate();
         if (!isValid) return;
         console.log(data);
-        // console.log(e.target);
     };
     return (
         <form onSubmit={handleSubmit}>
-            <TextField
-                label="Электронная почта"
-                name="email"
-                value={data.email}
-                onChange={handleChange}
-                errors={errors.email}
-            />
+            <h3 className="mb-4 text-center">Войти</h3>
+            <div className="form-group">
+                <TextField
+                    label="Электронная почта"
+                    name="email"
+                    value={data.email}
+                    onChange={handleChange}
+                    errors={errors.email}
+                />
 
-            <TextField
-                label="Пароль"
-                type="password"
-                name="password"
-                value={data.password}
-                onChange={handleChange}
-                errors={errors.password}
-            />
-            <button className="btn btn-primary">Submit</button>
+                <TextField
+                    label="Пароль"
+                    type="password"
+                    name="password"
+                    value={data.password}
+                    onChange={handleChange}
+                    errors={errors.password}
+                />
+                <button className="btn btn-primary mb-4">Войти</button>
+            </div>
         </form>
     );
 };

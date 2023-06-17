@@ -2,24 +2,32 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const TextField = ({ label, type, name, value, onChange, errors }) => {
+    const formClassname = () => {
+        return errors ? "is-invalid" : "";
+    };
     return (
         <div className="mb-4">
-            <label htmlFor={name}> {label} </label>
+            <label className="mb-2" htmlFor={name}>
+                {" "}
+                {label}{" "}
+            </label>
 
             <div className="input-group has-validation">
                 <input
+                    className={"form-control " + formClassname()}
+                    placeholder={name}
                     id={name}
                     name={name}
                     type={type}
                     value={value}
                     onChange={onChange}
                 />
-                {errors && (
-                    <div className="form-control is-invalid" role="alert">
-                        {errors}
-                    </div>
-                )}
             </div>
+            {errors && (
+                <div className="form-control" role="alert">
+                    {errors}
+                </div>
+            )}
         </div>
     );
 };

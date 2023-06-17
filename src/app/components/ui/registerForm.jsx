@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import TextField from "../common/form/textField";
 import { validator } from "../../utils/validator";
+import { Form } from "react-bootstrap";
 // НАСТРОИТЬ ЛОГИН ФОРМ
 const RegisterForm = () => {
     const [data, setData] = useState({
         email: "",
-        password: ""
+        password: "",
+        doj: "12.12.2000"
     });
     const [errors, setErrors] = useState({});
 
@@ -23,6 +25,12 @@ const RegisterForm = () => {
             },
             isEmail: {
                 message: "Email введен некорректно"
+            }
+        },
+        // Создать валидацию по логину
+        login: {
+            isRequired: {
+                message: "Поле не должно быть пустым"
             }
         },
         password: {
@@ -49,10 +57,9 @@ const RegisterForm = () => {
     const validate = () => {
         const errors = validator(data, validatorConfig);
         setErrors(errors);
+        return Object.keys(errors).length === 0;
     };
-    useEffect(() => {
-        console.log("errors", errors);
-    }, [errors]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const isValid = validate();
@@ -62,6 +69,22 @@ const RegisterForm = () => {
     };
     return (
         <form onSubmit={handleSubmit}>
+            <h3 className="mb-4 text-center">Зарегестрироваться</h3>
+            <TextField
+                label="Электронная почта"
+                name="email"
+                value={data.email}
+                onChange={handleChange}
+                errors={errors.email}
+            />
+            <TextField
+                label="логин"
+                type="login"
+                name="login"
+                value={data.login}
+                onChange={handleChange}
+                errors={errors.login}
+            />
             <TextField
                 label="Пароль"
                 type="password"
@@ -70,7 +93,27 @@ const RegisterForm = () => {
                 onChange={handleChange}
                 errors={errors.password}
             />
-            <button className="btn btn-primary">Submit</button>
+            <div>
+                <div className="row">
+                    <div className="col-md-6 mb-4">
+                        <Form.Group controlId="doj">
+                            <Form.Label>Дата рождения </Form.Label>
+                            <Form.Control
+                                type="date"
+                                name="doj"
+                                defaultValue={data.doj}
+                                placeholder="Дата рождения"
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                    </div>
+                </div>
+            </div>
+            <div className="btn btn-block w-100">
+                <button className="btn btn-primary btn-lg w-100">
+                    Зарегестрироваться
+                </button>
+            </div>
         </form>
     );
 };
