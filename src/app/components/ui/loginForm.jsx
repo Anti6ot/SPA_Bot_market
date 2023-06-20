@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import TextField from "../common/form/textField";
 import { validator } from "../../utils/validator";
+import userService from "../../services/user.service";
+
 // НАСТРОИТЬ ЛОГИН ФОРМ
 const LoginForm = () => {
     const [data, setData] = useState({
@@ -8,13 +10,6 @@ const LoginForm = () => {
         password: ""
     });
     const [errors, setErrors] = useState({});
-
-    const handleChange = ({ target }) => {
-        setData((prevState) => ({
-            ...prevState,
-            [target.name]: target.value
-        }));
-    };
 
     const validatorConfig = {
         email: {
@@ -50,14 +45,27 @@ const LoginForm = () => {
         const errors = validator(data, validatorConfig);
         setErrors(errors);
     };
-    useEffect(() => {
-        console.log("errors", errors);
-    }, [errors]);
-    const handleSubmit = (e) => {
+    const isValid = Object.keys(errors).length === 0;
+
+    const handleChange = ({ target }) => {
+        setData((prevState) => ({
+            ...prevState,
+            [target.name]: target.value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const isValid = validate();
-        if (!isValid) return;
-        console.log(data);
+
+        if (!isValid) {
+            try {
+                const { content } = await userService.get();
+                console.log(content);
+            } catch (error) {
+                console.log(error);
+            }
+        }
     };
     return (
         <form onSubmit={handleSubmit}>
@@ -79,7 +87,14 @@ const LoginForm = () => {
                     onChange={handleChange}
                     errors={errors.password}
                 />
-                <button className="btn btn-primary mb-4">Войти</button>
+                <div className="btn btn-block w-100">
+                    <button
+                        disabled={!isValid}
+                        className="btn btn-primary btn-lg w-100"
+                    >
+                        Войти
+                    </button>
+                </div>
             </div>
         </form>
     );

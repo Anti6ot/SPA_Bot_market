@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import TextField from "../common/form/textField";
 import { validator } from "../../utils/validator";
 import { Form } from "react-bootstrap";
+import userService from "../../services/user.service";
 // НАСТРОИТЬ ЛОГИН ФОРМ
 const RegisterForm = () => {
     const [data, setData] = useState({
         email: "",
         password: "",
-        doj: "12.12.2000"
+        login: ""
     });
     const [errors, setErrors] = useState({});
 
@@ -60,12 +61,17 @@ const RegisterForm = () => {
         return Object.keys(errors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const isValid = validate();
-        if (!isValid) return;
-        console.log(data);
-        // console.log(e.target);
+        if (!isValid) {
+            try {
+                const { content } = await userService.get();
+                console.log(content);
+            } catch (error) {
+                console.log(error);
+            }
+        }
     };
     return (
         <form onSubmit={handleSubmit}>
@@ -79,7 +85,6 @@ const RegisterForm = () => {
             />
             <TextField
                 label="логин"
-                type="login"
                 name="login"
                 value={data.login}
                 onChange={handleChange}
@@ -101,7 +106,6 @@ const RegisterForm = () => {
                             <Form.Control
                                 type="date"
                                 name="doj"
-                                defaultValue={data.doj}
                                 placeholder="Дата рождения"
                                 onChange={handleChange}
                             />

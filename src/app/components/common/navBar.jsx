@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Login from "../../layouts/modal/login";
 
 const NavBar = () => {
+    const [modalActive, setModalActive] = useState(false);
     return (
         <nav className="navbar navbar-dark bg-dark navbar-expand-lg ">
             <div className="container d-flex">
@@ -53,7 +55,15 @@ const NavBar = () => {
                     <div className="container-fluid d-flex justify-content-end">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item mx-5">
-                                <Link className="nav-link" to="/login">
+                                <Login
+                                    active={modalActive}
+                                    setActive={setModalActive}
+                                />
+                                <Link
+                                    className="nav-link"
+                                    to="/login"
+                                    onClick={() => setModalActive(true)}
+                                >
                                     Login
                                 </Link>
                             </li>
