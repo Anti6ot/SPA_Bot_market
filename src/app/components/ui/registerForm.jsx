@@ -66,7 +66,7 @@ const RegisterForm = () => {
         const isValid = validate();
         if (!isValid) {
             try {
-                const { content } = await userService.get();
+                const { content } = await userService.post();
                 console.log(content);
             } catch (error) {
                 console.log(error);
