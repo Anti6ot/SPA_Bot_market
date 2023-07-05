@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import TextField from "../common/form/textField";
 import { validator } from "../../utils/validator";
 import { Form } from "react-bootstrap";
-import userService from "../../services/user.service";
-// НАСТРОИТЬ ЛОГИН ФОРМ
+// import userService from "../../services/user.service";
+
 const RegisterForm = () => {
     const [data, setData] = useState({
         email: "",
         password: "",
-        login: ""
+        login: "",
+        doj: ""
     });
     const [errors, setErrors] = useState({});
 
@@ -28,7 +29,6 @@ const RegisterForm = () => {
                 message: "Email введен некорректно"
             }
         },
-        // Создать валидацию по логину
         login: {
             isRequired: {
                 message: "Поле не должно быть пустым"
@@ -61,17 +61,17 @@ const RegisterForm = () => {
         return Object.keys(errors).length === 0;
     };
 
+    const isValid = Object.keys(errors).length === 0;
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const isValid = validate();
-        if (!isValid) {
-            try {
-                const { content } = await userService.post();
-                console.log(content);
-            } catch (error) {
-                console.log(error);
-            }
-        }
+        if (!isValid) return;
+        console.log(data);
+        // try {
+        //     const { content } = await userService.post();
+        //     console.log(content);
+        // } catch (error) {
+        //     console.log(error);
+        // }
     };
     return (
         <form onSubmit={handleSubmit}>
