@@ -1,0 +1,30 @@
+{
+  "name": "d-p-server",
+  "version": "1.0.0",
+  "description": "degree project server",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node app.js",
+    "serve": "cross-env NODE_ENV=development nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anti6ot/Blog_bot_app.git#main"
+  },
+  "author": "Nikolai Antonov <NikolaiFinance@yandex.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anti6ot/Blog_bot_app/issues"
+  },
+  "homepage": "https://github.com/Anti6ot/Blog_bot_app/tree/main#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "config": "^3.3.9",
+    "express": "^4.18.2",
+    "mongoose": "^7.3.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.22"
+  }
+}

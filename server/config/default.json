@@ -1,0 +1,4 @@
+{
+  "port": 8080,
+  "mongoUri": "mongodb+srv://lilapanics:Test123@dbbot.8qkfzhx.mongodb.net/?retryWrites=true&w=majority"
+}
