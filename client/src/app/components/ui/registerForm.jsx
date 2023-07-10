@@ -3,13 +3,14 @@ import TextField from "../common/form/textField";
 import { validator } from "../../utils/validator";
 import { Form } from "react-bootstrap";
 // import userService from "../../services/user.service";
+import axios from "axios";
 
+// НАСТРОИТЬ ЛОГИН ФОРМ
 const RegisterForm = () => {
     const [data, setData] = useState({
         email: "",
         password: "",
-        login: "",
-        doj: ""
+        login: ""
     });
     const [errors, setErrors] = useState({});
 
@@ -29,6 +30,7 @@ const RegisterForm = () => {
                 message: "Email введен некорректно"
             }
         },
+        // Создать валидацию по логину
         login: {
             isRequired: {
                 message: "Поле не должно быть пустым"
@@ -60,19 +62,24 @@ const RegisterForm = () => {
         setErrors(errors);
         return Object.keys(errors).length === 0;
     };
+    function signUp({ email, password }) {
+        const key = "AIzaSyA68JM_ZTqlRFpnEMhwegzG05NJS8Hfobo";
+        const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`;
+        const { data } = axios.post(url, {
+            email,
+            password,
+            returnSecureToken: true
+        });
+        console.log(data);
+    }
 
-    const isValid = Object.keys(errors).length === 0;
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!isValid) return;
-        console.log(data);
-        // try {
-        //     const { content } = await userService.post();
-        //     console.log(content);
-        // } catch (error) {
-        //     console.log(error);
-        // }
+        // const isValid = validate();
+        console.log(errors);
+        console.log(signUp(data));
     };
+
     return (
         <form onSubmit={handleSubmit}>
             <h3 className="mb-4 text-center">Зарегестрироваться</h3>
