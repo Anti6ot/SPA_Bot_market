@@ -5,7 +5,6 @@ import { Form } from "react-bootstrap";
 // import userService from "../../services/user.service";
 import axios from "axios";
 
-// НАСТРОИТЬ ЛОГИН ФОРМ
 const RegisterForm = () => {
     const [data, setData] = useState({
         email: "",
