@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs')
 const {generateUserData} = require("../utils/helpers")
 const tokenService = require('../services/token.service')
 const {check, validationResult} = require("express-validator");
-const e = require("express");
 
 
 
@@ -60,14 +59,14 @@ router.post('/signUp', [
             message: `На сервере произошла ошибка. Попробуйте позже`
         })
     }
-    
+
 }])
 router.post('/signInWithPassword', [
     check('email', 'Почта указана некорректно').normalizeEmail().isEmail(),
     check('password', 'Поле не может быть пустым').exists(),
     async (req, res)=>{
     try{
-        const errors = validationResult(req)
+        const errors = await validationResult(req)
 
         if(!errors.isEmpty()){
             return res.status(400).json({
@@ -81,12 +80,13 @@ router.post('/signInWithPassword', [
 
          const {email, password} = req.body
          const existingUser = await User.findOne({email})
-
         if(!existingUser) {
             return  res.status(400).send({
                 error: {
                     message: 'EMAIL_NOT_FOUND',
-                    code:400
+                    code:400,
+                    errors: errors
+
                 }
             })
         }
@@ -102,7 +102,7 @@ router.post('/signInWithPassword', [
             })
         }
 
-        const tokens = tokenService.generate({ _id: existingUser._id})
+        const tokens =  tokenService.generate({ _id: existingUser._id})
         await tokenService.save(existingUser._id, tokens.refreshToken)
 
         res.status(200).send({...tokens, userId: existingUser._id})
