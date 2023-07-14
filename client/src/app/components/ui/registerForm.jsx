@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import TextField from "../common/form/textField";
 import { validator } from "../../utils/validator";
 import { Form } from "react-bootstrap";
-// import userService from "../../services/user.service";
-import axios from "axios";
+import userService from "../../services/user.service";
+// import axios from "axios";
 
 const RegisterForm = () => {
     const [data, setData] = useState({
@@ -61,22 +61,24 @@ const RegisterForm = () => {
         setErrors(errors);
         return Object.keys(errors).length === 0;
     };
-    function signUp({ email, password }) {
-        const key = "AIzaSyA68JM_ZTqlRFpnEMhwegzG05NJS8Hfobo";
-        const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`;
-        const { data } = axios.post(url, {
-            email,
-            password,
-            returnSecureToken: true
-        });
-        console.log(data);
+   async function signUp() {
+        // const key = "AIzaSyA68JM_ZTqlRFpnEMhwegzG05NJS8Hfobo";
+        // const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`;
+        // const { data } = axios.post(url, {
+        //     email,
+        //     password,
+        //     returnSecureToken: true
+        // });
+        // console.log(data);
+        const content = await userService.get();
+       console.log(content);
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // const isValid = validate();
-        console.log(errors);
-        console.log(signUp(data));
+        const isValid = validate();
+        if (!isValid) return;
+         await signUp();
     };
 
     return (
