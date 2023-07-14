@@ -62,7 +62,9 @@ router.post('/signUp', [
 
 }])
 router.post('/signInWithPassword', [
-    check('email', 'Почта указана некорректно').normalizeEmail().isEmail(),
+    check('email', 'Почта указана некорректно').normalizeEmail({
+        all_lowercase:false,
+    }).isEmail(),
     check('password', 'Поле не может быть пустым').exists(),
     async (req, res)=>{
     try{

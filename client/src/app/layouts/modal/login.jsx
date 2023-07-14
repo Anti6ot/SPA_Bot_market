@@ -38,7 +38,7 @@ const Login = ({ active, setActive }) => {
                         >
                             {formType === "register" ? (
                                 <>
-                                    <RegisterForm />
+                                    <RegisterForm setActive={setActive} />
                                     <p>
                                         Уже есть аккаутнт?
                                         <a

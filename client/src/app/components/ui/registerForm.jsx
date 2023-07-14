@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import TextField from "../common/form/textField";
 import { validator } from "../../utils/validator";
 import { Form } from "react-bootstrap";
-import userService from "../../services/user.service";
-// import axios from "axios";
+import authService from "../../services/auth.service";
+import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const RegisterForm = () => {
+const RegisterForm = ({ setActive }) => {
+    const history = useHistory();
     const [data, setData] = useState({
         email: "",
         password: "",
@@ -61,24 +63,27 @@ const RegisterForm = () => {
         setErrors(errors);
         return Object.keys(errors).length === 0;
     };
-   async function signUp() {
-        // const key = "AIzaSyA68JM_ZTqlRFpnEMhwegzG05NJS8Hfobo";
-        // const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`;
-        // const { data } = axios.post(url, {
-        //     email,
-        //     password,
-        //     returnSecureToken: true
-        // });
-        // console.log(data);
-        const content = await userService.get();
-       console.log(content);
+    const isValid = Object.keys(errors).length === 0;
+
+    async function signUp() {
+        try {
+            const content = await authService.register(data);
+            return content;
+        } catch (e) {
+            setErrors(e.response.data.error);
+            if (e.response.data.error.message === "EMAIL_EXISTS") {
+                console.log("Почта уже зарегестрирована");
+            }
+        }
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-         await signUp();
+            await signUp(data);
+            history.push("/");
+            setActive(false);
     };
 
     return (
@@ -122,7 +127,7 @@ const RegisterForm = () => {
                 </div>
             </div>
             <div className="btn btn-block w-100">
-                <button className="btn btn-primary btn-lg w-100">
+                <button className="btn btn-primary btn-lg w-100" disabled={!isValid}>
                     Зарегестрироваться
                 </button>
             </div>
@@ -130,4 +135,8 @@ const RegisterForm = () => {
     );
 };
 
+RegisterForm.propTypes = {
+    active: PropTypes.bool,
+    setActive: PropTypes.func
+};
 export default RegisterForm;
