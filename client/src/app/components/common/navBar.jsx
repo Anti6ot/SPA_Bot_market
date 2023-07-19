@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Login from "../../layouts/modal/login";
+import { useSelector } from "react-redux";
+import { getCurrentUserId } from "../../store/users";
 
 const NavBar = () => {
+    const currentUserId = useSelector(getCurrentUserId());
+    console.log(currentUserId);
+
     const [modalActive, setModalActive] = useState(false);
     return (
         <nav className="navbar navbar-dark bg-dark navbar-expand-lg ">

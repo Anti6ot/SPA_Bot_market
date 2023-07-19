@@ -1,0 +1,118 @@
+.home_container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1046px;
+    margin: 0px auto;
+    padding: 0px 15px;
+    box-sizing: content-box;
+}
+.overwrite{
+    display: flex;
+    padding: 15px;
+}
+.overwrite_img{
+    padding: 10px;
+
+}
+.overwrite_img img{
+    width: 280px;
+    height: 330px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5)
+
+}
+.overwrite_text{
+    padding-top: 20px;
+    margin: 20px;
+    width: 70%;
+    height: 100px;
+}
+.right{
+    text-align: right;
+}
+.cd-intro-content{
+    padding: 0 15px;
+}
+.cd-intro-content h1,
+.cd-intro-content p,
+
+.cd-intro-content .cd-btn {
+    opacity: 0;
+    color: black;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+.bouncy.cd-intro-content span p {
+    animation-name: cd-bounce-right;
+}
+
+.bouncy.cd-intro-content p {
+    animation-name: cd-bounce-left;
+}
+
+.bouncy.cd-intro-content p {
+    animation-duration: 0.6s;
+}
+
+.bouncy.cd-intro-content .cd-btn {
+    animation-name: cd-bounce-rotate;
+    animation-duration: 0.5s;
+}
+
+.bouncy.cd-intro-content .cd-btn.main-action {
+    animation-delay: 0.4s;
+}
+.cd-intro{
+    text-align: center;
+}
+@keyframes cd-bounce-right {
+    0% {
+        opacity: .2;
+        transform: translateX(-200px);
+    }
+    60% {
+        opacity: .7;
+        transform: translateX(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes cd-bounce-left {
+    0% {
+        opacity: .2;
+        transform: translateX(200px);
+    }
+    60% {
+        opacity: .7;
+        transform: translateX(-15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes cd-bounce-rotate {
+    0% {
+        opacity: .2;
+        transform: perspective(800px) rotateX(-80deg);
+    }
+    20% {
+        opacity: 1;
+    }
+    60% {
+        transform: perspective(800px) rotateX(20deg);
+    }
+    100% {
+        opacity: 1;
+        transform: perspective(800px) rotateX(0);
+    }
+}
+
+@media (max-width: 360px) {
+
+}

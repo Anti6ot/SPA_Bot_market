@@ -26,8 +26,8 @@ http.interceptors.request.use(
             localStorageService.setTokens(data);
             const accessToken = localStorageService.getAccessToken();
             if (accessToken) {
-                config.params = {
-                    ...config.params,
+                config.headers = {
+                    ...config.headers,
                     Authorization: `Bearer ${accessToken}`
                 };
             }
@@ -39,17 +39,17 @@ http.interceptors.request.use(
         return Promise.reject(error);
     }
 );
-function transformData(data) {
-    return data
-        ? Object.keys(data).map((key) => ({
-              ...data[key]
-          }))
-        : [];
-}
+// function transformData(data) {
+//     return data
+//         ? Object.keys(data).map((key) => ({
+//               ...data[key]
+//           }))
+//         : [];
+// }
 
 http.interceptors.response.use(
     (res) => {
-        res.data = { content: transformData(res.data) };
+        res.data = { content: res.data };
         return res;
     },
     function error(error) {

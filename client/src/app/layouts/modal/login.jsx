@@ -51,7 +51,7 @@ const Login = ({ active, setActive }) => {
                                 </>
                             ) : (
                                 <>
-                                    <LoginForm />
+                                    <LoginForm setActive={setActive}/>
                                     <p>
                                         Еще незарегестрированы?
                                         <a
