@@ -15,11 +15,11 @@ app.use('/api', routes)
 const PORT = config.get('port') ?? 8080
 
 
-if(process.env.NODE_ENV === 'development'){
-    app.get('/',(req, res) => {
-        res.send('hello')
-    });
-}
+// if(process.env.NODE_ENV === 'development'){
+//     app.get('/',(req, res) => {
+//         res.send('hello')
+//     });
+// }
 
 async function start(){
 

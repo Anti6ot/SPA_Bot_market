@@ -14,7 +14,6 @@ http.interceptors.request.use(
         const expiresDate = localStorageService.getTokenExpiresDate();
         const refreshToken = localStorageService.getRefreshToken();
         const isExpired = refreshToken && expiresDate < Date.now();
-
         // настройка url по / и json
         if (configFile.isFireBase) {
             const containSlash = /\/$/gi.test(config.url); // ищет / в конце
@@ -22,15 +21,15 @@ http.interceptors.request.use(
                 (containSlash ? config.url.slice(0, -1) : config.url) + ".json"; // если есть / в конце то вырезаем ссылку и доб.json для считывания БД в FB
         } else {
             if (isExpired) {
-            const data = await authService.refresh();
-            localStorageService.setTokens(data);
+                const data = await authService.refresh();
+                localStorageService.setTokens(data);
+            }
             const accessToken = localStorageService.getAccessToken();
             if (accessToken) {
                 config.headers = {
                     ...config.headers,
                     Authorization: `Bearer ${accessToken}`
                 };
-            }
             }
         }
         return config;
