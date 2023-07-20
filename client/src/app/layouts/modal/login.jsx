@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import RegisterForm from "../../components/ui/registerForm";
 const Login = ({ active, setActive }) => {
     const { type } = useParams();
-
     const [formType, setFormType] = useState(
         type === "register" ? type : "login"
     );

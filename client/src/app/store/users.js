@@ -4,21 +4,35 @@ import authService from "../services/auth.service";
 import localStorageService from "../services/localStorage.service";
 import history from "../utils/history";
 
-const usersSlice = createSlice({
-    name: "users",
-    initialState: {
+const initialState = localStorageService.getAccessToken()
+    ? {
         entities: null,
         isLoading: true,
         error: null,
+        auth: { userId: localStorageService.getUserId() },
+        isLoggedIn: true,
+        dataLoaded: false
+    }
+    : {
+        entities: null,
+        isLoading: false,
+        error: null,
         auth: null,
-        isLoggedIn: false
-    },
+        isLoggedIn: false,
+        dataLoaded: false
+    };
+
+const usersSlice = createSlice({
+    name: "users",
+    initialState,
     reducers: {
         usersRequested: (state) => {
             state.isLoading = true;
         },
         usersReceved: (state, action) => {
+            console.log(action.payload);
             state.entities = action.payload;
+            state.dataLoaded = true;
             state.isLoading = false;
         },
         usersRequestFiled: (state, action) => {
@@ -90,7 +104,7 @@ export const signUp = (payload) => async (dispatch) => {
 //     };
 // }
 
-export const loadUserslist = () => async (dispatch) => {
+export const loadUsersList = () => async (dispatch) => {
         dispatch(usersRequested());
         try {
             const { content } = await userService.get();
@@ -106,8 +120,9 @@ export const getUserById = (userId) => state => {
         return state.users.entities.find(u => u._id === userId);
     }
 };
-
+export const getUsersLoadingStatus = () => (state) => state.users.isLoading;
+export const getDataStatus = () => (state) => state.users.dataLoaded;
 export const getIsLoggedIn = () => state => state.users.isLoggedIn;
-export const getCurrentUserId = () => (state) => state.users?.auth?.userId;
+export const getCurrentUserId = () => (state) => state.users.auth.userId;
 
 export default usersReducer;

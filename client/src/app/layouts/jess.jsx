@@ -38,7 +38,7 @@ const Jess = () => {
                     </p>
                 </div>
                 <div className="jess_img">
-                    <img src="https://yt3.googleusercontent.com/c0Rw3I6w6SFxJv5wYa6BHm7StXbxOuv7M-8hBoue7RoV2Q1iarMlYG5EeP_YPDPa9rbQGj6FXw=s900-c-k-c0x00ffffff-no-rj" alt=""/>
+                    <img src="https://regmedia.co.uk/2018/12/01/cyborg.jpg" alt=""/>
                 </div>
             </div>
             <div>

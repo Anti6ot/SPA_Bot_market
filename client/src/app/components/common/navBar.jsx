@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Login from "../../layouts/modal/login";
 import { useSelector } from "react-redux";
-import { getCurrentUserId } from "../../store/users";
+import { getIsLoggedIn } from "../../store/users";
 
 const NavBar = () => {
-    const currentUserId = useSelector(getCurrentUserId());
-    console.log(currentUserId);
+    // const currentUserId = useSelector(getCurrentUserId());
+    const isLoggedIn = useSelector(getIsLoggedIn());
 
     const [modalActive, setModalActive] = useState(false);
     return (
@@ -59,19 +59,25 @@ const NavBar = () => {
                     </ul>
                     <div className="container-fluid d-flex justify-content-end">
                         <ul className="navbar-nav mr-auto">
-                            <li className="nav-item mx-5">
-                                <Login
-                                    active={modalActive}
-                                    setActive={setModalActive}
-                                />
-                                <Link
-                                    className="nav-link"
-                                    to="/login"
-                                    onClick={() => setModalActive(true)}
-                                >
-                                    Login
-                                </Link>
-                            </li>
+                            {
+                                isLoggedIn
+                                ? <Link className="nav-link" to="/user">
+                                        User
+                                    </Link>
+                                    : <li className="nav-item mx-5">
+                                        <Login
+                                            active={modalActive}
+                                            setActive={setModalActive}
+                                        />
+                                        <Link
+                                            className="nav-link"
+                                            to="/login"
+                                            onClick={() => setModalActive(true)}
+                                        >
+                                            Login
+                                        </Link>
+                                    </li>
+                            }
                         </ul>
                     </div>
                 </div>

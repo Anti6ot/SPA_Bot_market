@@ -6,12 +6,14 @@ import PropTypes from "prop-types";
 
 const ProtectedRoute = ({ component: Component, children, ...rest }) => {
     const isLoggedIn = useSelector(getIsLoggedIn());
-    return (<Route {...rest} render={(props) => {
+    return (
+        <Route {...rest} render={(props) => {
         if (!isLoggedIn) {
           return <Redirect to='/login'/>;
         }
         return Component ? <Component {...props} /> : children;
-    }} />);
+    }} />
+    );
 };
 
 ProtectedRoute.propTypes = {
