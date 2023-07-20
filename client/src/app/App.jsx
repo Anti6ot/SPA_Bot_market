@@ -12,21 +12,10 @@ import "react-toastify/dist/ReactToastify.css";
 // import { getDataStatus, loadUserslist } from "./store/users";
 import ProtectedRoute from "./components/common/protectedRoute";
 import User from "./layouts/user";
-import userService from "./services/user.service";
 import AppLoader from "./components/ui/hoc/appLoader";
 import LogOut from "./layouts/logOut";
 
  function App() {
-    async function gt() {
-        try {
-            const { content } = await userService.get();
-            console.log(content);
-        } catch (e) {
-            console.log(e);
-        }
-    }
-    gt();
-
     return (
         <div>
             <AppLoader>

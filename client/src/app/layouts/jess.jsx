@@ -1,27 +1,13 @@
 import React from "react";
 import "../styles/jess.css";
+import { useSelector } from "react-redux";
+import { getDLC } from "../store/dlc";
+import { getQuality } from "../store/quality";
 
 const Jess = () => {
     // добавить обьект в db
-    const textQuality = {
-        one: "Имею консервативную и агрессивную\n" +
-            "настройку заработка. Выбор настройки\n" +
-            "будет зависеть от твоих пожеланий моей\n" +
-            "работы.",
-        two: "Ежемесячно я буду приносить тебе\n" +
-            "прибыль от 8-10%. За год твоя\n" +
-            "доходность будет составлять от 100%.",
-        three: "Меня не пугают возможные просадки.\n" +
-            "Я буду продолжать зарабатывать в любой\n" +
-            "экономической ситуации.",
-        four: "Я быстрый и умный.\n" +
-            "Меня наделили большим количеством\n" +
-            "персональных настроек, которые удовлетворят\n" +
-            "запросы даже самых требовательных\n" +
-            "пользователей.",
-        five: "Минимальная сумма для запуска моей работы\n" +
-            "начинается от 200 $ до ... "
-    };
+    const dlcs = useSelector(getDLC());
+    const qualities = useSelector(getQuality());
     return (
         <div className="jess_container">
             <div className="jess_item">
@@ -41,43 +27,43 @@ const Jess = () => {
                     <img src="https://regmedia.co.uk/2018/12/01/cyborg.jpg" alt=""/>
                 </div>
             </div>
-            <div>
+
+            <div className="jess_products">
                 <h1>Что я умею</h1>
-                <div className="jess_cards">
-                        <div className="jess_card card-body">
-                            <div className="card_img"></div>
-                            <div className="card_text">
-                                <p>{textQuality.one}</p>
-                            </div>
-                    </div>
-                        <div className="jess_card card-body">
-                            <div className="card_img"></div>
-                            <div className="card_text">
-                                <p>{textQuality.two}</p>
-                            </div>
-                    </div>
-                        <div className="jess_card card-body">
-                            <div className="card_img"></div>
-                            <div className="card_text">
-                                <p>{textQuality.three}</p>
-                            </div>
+                <div>
+                    {qualities
+                        ? <div className="jess_cards">
+                            {qualities.map(el =>
+                                (<div key={el._id} className="jess_card card-body">
+                                    <div className="card_text">
+                                        <p>{el.desc}</p>
+                                    </div>
+                                </div>)
+                            )}
                         </div>
-                        <div className="jess_card card-body">
-                            <div className="card_img"></div>
-                            <div className="card_text">
-                                <p>{textQuality.four}</p>
-                            </div>
-                    </div>
-                        <div className="jess_card card-body">
-                            <div className="card_img"></div>
-                            <div className="card_text">
-                                <p>{textQuality.five}</p>
-                            </div>
-                        </div>
+                        : "Loading...."
+                    }
+
                 </div>
             </div>
+
             <div className="jess_products">
                 <h1>Продукты</h1>
+                <div>
+                    {dlcs
+                        ? <div className="jess_cards">
+                            {dlcs.map(el =>
+                                (<div key={el._id} className="jess_card card-body">
+                                    <div className="card_text">
+                                        <p>{el.name}</p>
+                                    </div>
+                                </div>)
+                            )}
+                         </div>
+                    : "Loading...."
+                    }
+
+                </div>
             </div>
         </div>
     );

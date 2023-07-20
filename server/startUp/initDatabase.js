@@ -1,11 +1,19 @@
 
 const Dlc = require('../models/Dlc')
 const dlcMock = require('../mock/dlc.json')
+const Quality = require('../models/Quality')
+const qualityMock = require('../mock/quality.json')
 
 module.exports = async () => {
+
 const Dlcs = await Dlc.find()
     if(Dlcs.length !== dlcMock.length){
       await  createInitialEntity(Dlc, dlcMock)
+    }
+
+const Qualities = await Quality.find()
+    if(Qualities.length !== qualityMock.length){
+        await createInitialEntity(Quality, qualityMock)
     }
 }
 

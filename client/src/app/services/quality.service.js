@@ -1,10 +1,10 @@
 import httpService from "./http.service";
-const dlcEndpoint = "dlc/";
+const dlcEndpoint = "quality/";
 
-const dlcService = {
-    fetchAll: async () => {
+const qualityService = {
+    get: async () => {
         const { data } = await httpService.get(dlcEndpoint);
         return data;
     }
 };
-export default dlcService;
+export default qualityService;
