@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/jess.css";
 import { useSelector } from "react-redux";
 import { getDLC } from "../store/dlc";
 import { getQuality } from "../store/quality";
 
 const Jess = () => {
-    // добавить обьект в db
     const dlcs = useSelector(getDLC());
     const qualities = useSelector(getQuality());
+
+    const [addDLC, setAddDLC] = useState({
+        "без рекламы": false,
+         обучение: false,
+        "закрытый канал": false
+    });
+    useEffect(() => {
+        console.log(addDLC);
+    }, [addDLC]);
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        const { target } = e;
+        setAddDLC(prevState => ({
+            ...prevState,
+            [target.name]: true
+        }));
+    };
     return (
         <div className="jess_container">
             <div className="jess_item">
@@ -53,11 +70,14 @@ const Jess = () => {
                     {dlcs
                         ? <div className="jess_cards">
                             {dlcs.map(el =>
-                                (<div key={el._id} className="jess_card card-body">
+                                (<form onClick={handleClick} key={el._id} className="jess_card card-body">
                                     <div className="card_text">
-                                        <p>{el.name}</p>
+                                        <div>{el.name}</div>
                                     </div>
-                                </div>)
+                                    <button id={el._id}
+                                             name={el.name}
+                                              >Добавить</button>
+                                </form>)
                             )}
                          </div>
                     : "Loading...."

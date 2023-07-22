@@ -14,6 +14,7 @@ import ProtectedRoute from "./components/common/protectedRoute";
 import User from "./layouts/user";
 import AppLoader from "./components/ui/hoc/appLoader";
 import LogOut from "./layouts/logOut";
+import Basket from "./layouts/basket";
 
  function App() {
     return (
@@ -27,6 +28,7 @@ import LogOut from "./layouts/logOut";
                         <Route path="/kanki" component={Kanki} />
                         <ProtectedRoute>
                             <Route path="/user/:userId?" component = {User} />
+                            <Route path="/basket" component = {Basket} />
                         </ProtectedRoute>
                         <Route path="/login" component={Login} />
                         <Redirect to="/" />

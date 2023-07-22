@@ -1,5 +1,5 @@
 [
-  { "_id": "67rdca3eeb7f6fgeed471818", "name": "без рекламы" },
-  { "_id": "67rdca3eeb7f6fgeed471820", "name": "обучение" },
-  { "_id": "67rdca3eeb7f6fgeed471814", "name": "закрытый канал" }
+  { "_id": "67rdca3eeb7f6fgeed471818", "name": "без рекламы", "add": false},
+  { "_id": "67rdca3eeb7f6fgeed471820", "name": "обучение", "add": false },
+  { "_id": "67rdca3eeb7f6fgeed471814", "name": "закрытый канал", "add": false}
 ]

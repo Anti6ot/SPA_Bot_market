@@ -4,6 +4,9 @@ const schema = new Schema({
     name: {
         type: String,
         required: true
+    },
+    add: {
+        type: Boolean
     }
 },{
     timestamps: true
