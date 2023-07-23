@@ -7,9 +7,11 @@ const schema = new Schema({
     },
     add: {
         type: Boolean
-    }
+    },
+    pageId: { type: Schema.Types.ObjectId, ref: 'User', required: true}
 },{
     timestamps: true
     })
 
 module.exports = model('DLC', schema)
+

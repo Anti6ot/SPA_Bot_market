@@ -2,7 +2,6 @@ import NavBar from "./components/common/navBar";
 import { Redirect, Route, Switch } from "react-router-dom";
 import React from "react";
 import Jess from "./layouts/jess";
-import Kanki from "./layouts/kanki";
 import Home from "./layouts/home";
 import Login from "./layouts/modal/login";
 import "./layouts/modal/login.css";
@@ -25,7 +24,6 @@ import Basket from "./layouts/basket";
                         <Route path="/" exact component={Home} />
                         <Route path="/logout" component={LogOut}/>
                         <Route path="/jess" component={Jess} />
-                        <Route path="/kanki" component={Kanki} />
                         <ProtectedRoute>
                             <Route path="/user/:userId?" component = {User} />
                             <Route path="/basket" component = {Basket} />
