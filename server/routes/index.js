@@ -5,8 +5,6 @@ router.use('/auth', require('./auth.routes'))
 router.use('/user', require('./user.routes'))
 router.use('/dlc', require('./dlc.routes'))
 router.use('/quality', require('./quality.routes'))
-router.use('/comment', require('./comment.routes'))
-
 
 
 module.exports = router

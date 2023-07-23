@@ -1,5 +1,20 @@
 [
-  { "_id": "67rdca3eeb7f6fgeed471818", "name": "без рекламы", "add": false},
-  { "_id": "67rdca3eeb7f6fgeed471820", "name": "обучение", "add": false },
-  { "_id": "67rdca3eeb7f6fgeed471814", "name": "закрытый канал", "add": false}
+  {
+    "name": "без рекламы",
+    "price": 2343,
+    "id": "67rdca3eeb7f6fgeed471818",
+    "add": false
+  },
+  {
+    "name": "обучение",
+    "price": 2433,
+    "id": "67rdca3eeb7f6fgeed471820",
+    "add": false
+  },
+  {
+    "name": "закрытый канал",
+    "price": 3021,
+    "id": "67rdca3eeb7f6fgeed471814",
+    "add": false
+  }
 ]

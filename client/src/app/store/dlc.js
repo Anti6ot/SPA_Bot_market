@@ -15,8 +15,6 @@ const dlcSlice = createSlice({
         dlcReceved: (state, action) => {
             state.entities = action.payload;
             state.isLoading = false;
-            console.log("state.entities", state.entities);
-            console.log("action", state.entities);
         },
         dlcRequestFiled: (state, action) => {
             state.error = action.payload;
@@ -39,24 +37,24 @@ const { reducer: dlcReducer, actions } = dlcSlice;
 const { dlcRequested, dlcReceved, dlcRequestFiled, dlcUpdateFiled } = actions;
 
 export const loadDLClist = () => async (dispatch) => {
-        dispatch(dlcRequested());
-        try {
-            const { content } = await dlcService.fetchAll();
-            dispatch(dlcReceved(content));
-        } catch (e) {
-            dispatch(dlcRequestFiled(e.message));
-        }
+    dispatch(dlcRequested());
+    try {
+        const { content } = await dlcService.fetchAll();
+        dispatch(dlcReceved(content));
+    } catch (e) {
+        dispatch(dlcRequestFiled(e.message));
+    }
 };
 export const updatePropsDLC = (data) => async (dispatch) => {
-//     try {
-//         const { content } = await dlcService.update(data);
-//         dispatch(userUpdated(content));
-//     } catch (error) {
-//         dispatch(userUpdatedFailed(error.message));
-//     }
+    //     try {
+    //         const { content } = await dlcService.update(data);
+    //         dispatch(userUpdated(content));
+    //     } catch (error) {
+    //         dispatch(userUpdatedFailed(error.message));
+    //     }
 
     try {
-      const content = await dlcService.update(data);
+        const content = await dlcService.update(data);
         console.log("content", content);
     } catch (e) {
         dispatch(dlcUpdateFiled(e.message));
