@@ -14,9 +14,9 @@ const AppLoader = ({ children }) => {
     const isLoggedIn = useSelector(getIsLoggedIn());
     const usersStatusLoading = useSelector(getUsersLoadingStatus());
     useEffect(() => {
-        dispatch(loadDLClist());
         dispatch(loadQualityList());
         if (isLoggedIn) {
+            dispatch(loadDLClist());
             dispatch(loadUsersList());
         }
     }, [isLoggedIn]);

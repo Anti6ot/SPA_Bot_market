@@ -5,7 +5,7 @@ import "./cart-item.css";
 import PropTypes from "prop-types";
 import { deleteItemFromCart } from "../../store/cart";
 
-export const CartItem = ({ title, price, id }) => {
+export const CartItem = ({ title, price, id, desc }) => {
     const dispatch = useDispatch();
 
     const handleDeleteClick = () => {
@@ -30,5 +30,6 @@ export const CartItem = ({ title, price, id }) => {
 CartItem.propTypes = {
     title: PropTypes.string,
     price: PropTypes.number,
-    id: PropTypes.string
+    id: PropTypes.string,
+    desc: PropTypes.string
 };

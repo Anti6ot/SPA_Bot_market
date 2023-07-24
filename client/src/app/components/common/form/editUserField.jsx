@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const TextField = ({ label, type, name, value, onChange, errors }) => {
-    // const handleChange = ({ target }) => {
-    //     console.log(target);
-    //     // onChange({ name: target.name, value: target.value });
-    // };
+const EditUserField = ({ label, type, name, value, onChange, errors }) => {
+    const handleChange = ({ target }) => {
+        onChange({ name: target.name, value: target.value });
+    };
     const formClassname = () => {
         return errors ? "is-invalid" : "";
     };
@@ -24,7 +23,7 @@ const TextField = ({ label, type, name, value, onChange, errors }) => {
                     name={name}
                     type={type}
                     value={value}
-                    onChange={onChange}
+                    onChange={handleChange}
                 />
             </div>
             {errors && (
@@ -35,10 +34,10 @@ const TextField = ({ label, type, name, value, onChange, errors }) => {
         </div>
     );
 };
-TextField.defaultProps = {
+EditUserField.defaultProps = {
     type: "text"
 };
-TextField.propTypes = {
+EditUserField.propTypes = {
     label: PropTypes.string,
     type: PropTypes.string,
     name: PropTypes.string,
@@ -46,4 +45,4 @@ TextField.propTypes = {
     onChange: PropTypes.func,
     errors: PropTypes.string
 };
-export default TextField;
+export default EditUserField;

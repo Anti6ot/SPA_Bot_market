@@ -2,11 +2,14 @@
     text-decoration: none;
     color: white;
     width: 320px;
-    height: 300px;
+    height: 250px;
+    align-items: center;
+    text-align: center;
     background-color: rgb(36, 37, 41);
     border-radius: 15px;
-    cursor: pointer;
     position: relative;
+    border:  1px solid aqua;
+    box-shadow: 0px 5px 80px -20px rgb(0, 140, 255);
 }
 
 .dlc-item:not(:last-child) {
@@ -21,17 +24,18 @@
 
 .dlc-item__genre {
     margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .dlc-item__details{
+  
     padding: 10px 20px;
 }
 
 .dlc-item__description {
-    margin-top: 10px;
-    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    margin: 5px;
 }
 
 .dlc-item__buy {

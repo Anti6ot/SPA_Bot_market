@@ -8,6 +8,7 @@ const DlcItem = ({ dlc }) => {
         <div className="dlc-item">
             <div className="dlc-item__details">
                 <span className="dlc-item__title">{dlc.name}</span>
+                <span className="dlc-item__description">{dlc.desc}</span>
                 <div className="dlc-item__buy">
                     <DlcBuy dlc={dlc} />
                 </div>

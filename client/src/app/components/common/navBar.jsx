@@ -53,15 +53,6 @@ const NavBar = () => {
                                 Jess
                             </Link>
                         </li>
-                        <li className="nav-item d-flex align-items-center mx-5">
-                            <i
-                                className="bi bi-piggy-bank"
-                                style={{ fontSize: 22 + "px", color: "white" }}
-                            ></i>
-                            <Link className="nav-link" to="/kanki">
-                                Kanki
-                            </Link>
-                        </li>
                     </ul>
                     <div className="container-fluid d-flex justify-content-end">
                         <ul className="navbar-nav mr-auto">

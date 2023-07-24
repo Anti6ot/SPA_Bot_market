@@ -17,12 +17,13 @@ function App() {
         <div>
             <AppLoader>
                 <NavBar />
+
                 <Switch>
                     <Route path="/" exact component={Home} />
-                    <Route path="/logout" component={LogOut} />
                     <Route path="/jess" component={Jess} />
                     <ProtectedRoute>
-                        <Route path="/user/:userId?" component={User} />
+                        <Route path="/logout" component={LogOut} />
+                        <Route path="/user/:edit?" component={User} />
                     </ProtectedRoute>
                     <Route path="/login" component={Login} />
                     <Redirect to="/" />

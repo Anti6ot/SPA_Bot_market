@@ -12,12 +12,13 @@ export const CartMenu = ({ onClick }) => {
         <div className="cart-menu">
             <div className="cart-menu__games-list">
                 {items.length > 0
-                    ? items.map((game) => (
+                    ? items.map((dlc) => (
                           <CartItem
-                              key={game.id}
-                              price={game.price}
-                              title={game.name}
-                              id={game.id}
+                              key={dlc.id}
+                              price={dlc.price}
+                              title={dlc.name}
+                              desc={dlc.desc}
+                              id={dlc.id}
                           />
                       ))
                     : null}

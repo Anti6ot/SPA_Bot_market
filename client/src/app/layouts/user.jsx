@@ -1,23 +1,12 @@
 import React from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getCurrentUserId, getDataStatus, loadUserslist } from "../store/users";
-import UserListPage from "../components/ui/userListPage";
-// import { Redirect } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import UserEdit from "../components/common/pages/userEdit";
+import UserPage from "../components/common/pages/userPage/userPage";
 
 const User = () => {
-    // const dispatch = useDispatch();
-    // const userId = useSelector(getCurrentUserId());
-    // const dataStatus = useSelector(getDataStatus());
-    // useEffect(() => {
-    //     if (!dataStatus) {
-    //         dispatch(loadUserslist());
-    //     }
-    // }, []);
-    return (
-        <div>
-           <UserListPage/>
-        </div>
-    );
+    const params = useParams();
+    const { edit } = params;
+    return <>{edit ? <UserEdit /> : <UserPage />}</>;
 };
 
 export default User;
