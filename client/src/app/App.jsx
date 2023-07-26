@@ -17,7 +17,6 @@ function App() {
         <div>
             <AppLoader>
                 <NavBar />
-
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/jess" component={Jess} />

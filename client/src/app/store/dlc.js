@@ -46,13 +46,6 @@ export const loadDLClist = () => async (dispatch) => {
     }
 };
 export const updatePropsDLC = (data) => async (dispatch) => {
-    //     try {
-    //         const { content } = await dlcService.update(data);
-    //         dispatch(userUpdated(content));
-    //     } catch (error) {
-    //         dispatch(userUpdatedFailed(error.message));
-    //     }
-
     try {
         const content = await dlcService.update(data);
         console.log("content", content);
