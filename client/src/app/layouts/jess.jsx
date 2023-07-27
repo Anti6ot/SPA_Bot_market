@@ -20,15 +20,12 @@ const Jess = () => {
                             <h1>JE$$</h1>
                             <h2>34500 P</h2>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Facere itaque minus non
-                                provident quisquam, sapiente ullam. Aliquid
-                                aperiam ea in incidunt maiores provident saepe,
-                                veritatis? Lorem ipsum dolor sit amet,
-                                consectetur adipisicing elit. Ad aliquid, aut,
-                                consequatur dolorem earum enim, id molestiae
-                                molestias mollitia nemo nesciunt nihil
-                                praesentium quo voluptates.
+                                Профессиональный инструмент , который подходит
+                                как для новичков, так и для опытных трейдеров.
+                                HERME$ оценивает текущее состояние рынка,
+                                снижает возможные риски и увеличивает прибыль.
+                                Торговля предусмотрена на валютной паре: XAUUSD
+                                (Золото/Доллар)
                             </p>
                         </div>
                         <div className="jess_img">

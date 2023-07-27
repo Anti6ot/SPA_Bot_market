@@ -5,6 +5,16 @@ const Home = () => {
     return (
         <div className="home_container cd-intro">
             <div className="cd-intro-content bouncy">
+                <div className="">
+                    <div className="main-action">
+                        <p>
+                            <strong>
+                                Мы создаём финансовых героев 24/7 Срок
+                                изготовления до 48 часов
+                            </strong>
+                        </p>
+                    </div>
+                </div>
                 <div className="overwrite">
                     <div className="overwrite_img">
                         <img

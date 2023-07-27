@@ -27,9 +27,10 @@ img{
 .jess_cards{
     display: grid;
     text-align: center;
-        grid-template-columns: 1fr 1fr;
-    grid-gap: 16px;
+     grid-template-columns:1fr 1fr;
+    grid-gap: 46px;
     margin: 20px;
+    padding: 0px 100px 0px 100px;
 
 }
 
@@ -48,7 +49,7 @@ img{
 .jess_products{
     align-items: center;
     text-align: center;
-    margin: 50px;
+    margin: 50px 50px 0px 50px;
 }
 .jess_products h1{
     margin-bottom: 30px;
