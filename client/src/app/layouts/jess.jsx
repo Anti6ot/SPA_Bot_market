@@ -11,7 +11,6 @@ const Jess = () => {
     const qualities = useSelector(getQuality());
     const DLCs = useSelector(getDLC());
     const isLoading = useSelector(getIsLoggedIn());
-    console.log(DLCs);
     return (
         <>
             {isLoading ? (
@@ -65,9 +64,11 @@ const Jess = () => {
                     <div className="jess_products">
                         <h1>Продукты</h1>
                         <div className="carts_container">
-                            {DLCs.map((dls) => (
-                                <DlcItem dlc={dls} key={dls._id} />
-                            ))}
+                            {DLCs
+                                ? DLCs.map((dls) => (
+                                      <DlcItem dlc={dls} key={dls._id} />
+                                  ))
+                                : "Loading2234"}
                         </div>
                     </div>
                 </div>

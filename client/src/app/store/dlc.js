@@ -34,7 +34,13 @@ const dlcSlice = createSlice({
 // const addedDLCRequested = createAction("dlc/addedDLCRequested");
 
 const { reducer: dlcReducer, actions } = dlcSlice;
-const { dlcRequested, dlcReceved, dlcRequestFiled, dlcUpdateFiled } = actions;
+const {
+    dlcRequested,
+    dlcReceved,
+    dlcRequestFiled,
+    dlcUpdateFiled,
+    dlcUpdated
+} = actions;
 
 export const loadDLClist = () => async (dispatch) => {
     dispatch(dlcRequested());
@@ -47,8 +53,8 @@ export const loadDLClist = () => async (dispatch) => {
 };
 export const updatePropsDLC = (data) => async (dispatch) => {
     try {
-        const content = await dlcService.update(data);
-        console.log("content", content);
+        const content = localStorage.setItem(data);
+        dispatch(dlcUpdated(content));
     } catch (e) {
         dispatch(dlcUpdateFiled(e.message));
     }
